@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<div class="background-glow background-glow-1"></div>
+<div class="background-glow background-glow-2"></div>
+
+<canvas id="effects-canvas" class="effects-canvas"></canvas>
+
+<main class="app" id="app">
+    <h1>Wordle</h1>
+    <p class="subtitle">Guess the hidden 5-letter word</p>
+
+    <div id="grid" class="grid"></div>
+
+    <form id="guess-form" class="guess-form">
+        <label for="guess-input" class="visually-hidden">
+            Enter a 5-letter word
+        </label>
+
+        <input
+            id="guess-input"
+            type="text"
+            maxlength="5"
+            placeholder="Enter a word"
+            autocomplete="off"
+        />
+
+        <button type="submit">Play</button>
+    </form>
+
+    <p id="message" class="message"></p>
+
+    <button id="play-again-button" class="play-again-button hidden" type="button">
+        Play again
+    </button>
+</main>
+
+<script type="module" src="./main.ts"></script>
+</body>
+</html>
