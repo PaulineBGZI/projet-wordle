@@ -247,3 +247,13 @@ h1 {
     80% { transform: translateX(6px); }
     100% { transform: translateX(0); }
 }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+}
