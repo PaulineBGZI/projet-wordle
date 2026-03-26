@@ -257,7 +257,7 @@ form.addEventListener("submit", (event: Event) => {
         }
 
         if (game.getStatus() === GameStatus.LOST) {
-            endGame("You lost!", "lose");
+            endGame(`You lost! The word was ${game.getSecretWord()}.`, "lose");
         }
     } catch (error: unknown) {
         clearMessageClasses();

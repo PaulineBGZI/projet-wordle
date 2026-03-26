@@ -56,4 +56,8 @@ export class WordleGame {
     getMaxAttempts(): number {
         return this.maxAttempts;
     }
+
+    getSecretWord(): string {
+        return this.secretWord.getValue();
+    }
 }
