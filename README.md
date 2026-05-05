@@ -81,8 +81,6 @@ npm test
 npm run dev
 ```
 
-Vite affiche ensuite une URL locale à ouvrir dans le navigateur.
-
 ### Lancer la CLI
 ```bash
 npm start
