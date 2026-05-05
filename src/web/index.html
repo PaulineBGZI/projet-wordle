@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,30 +14,30 @@
 
 <main class="app" id="app">
     <h1>Wordle</h1>
-    <p class="subtitle">Guess the hidden 5-letter word</p>
+    <p class="subtitle">Devine le mot caché de 5 lettres</p>
 
     <div id="grid" class="grid"></div>
 
     <form id="guess-form" class="guess-form">
         <label for="guess-input" class="visually-hidden">
-            Enter a 5-letter word
+            Saisis un mot de 5 lettres
         </label>
 
         <input
             id="guess-input"
             type="text"
             maxlength="5"
-            placeholder="Enter a word"
+            placeholder="Entre un mot"
             autocomplete="off"
         />
 
-        <button type="submit">Play</button>
+        <button type="submit">Jouer</button>
     </form>
 
     <p id="message" class="message"></p>
 
     <button id="play-again-button" class="play-again-button hidden" type="button">
-        Play again
+        Rejouer
     </button>
 </main>
 

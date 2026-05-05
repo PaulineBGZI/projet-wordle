@@ -20,7 +20,7 @@ if (
     !(appElement instanceof HTMLElement) ||
     !(effectsCanvasElement instanceof HTMLCanvasElement)
 ) {
-    throw new Error("Web interface elements not found");
+    throw new Error("Les éléments de l'interface web sont introuvables");
 }
 
 const grid: HTMLDivElement = gridElement;
@@ -34,7 +34,7 @@ const effectsCanvas: HTMLCanvasElement = effectsCanvasElement;
 const rawContext = effectsCanvas.getContext("2d");
 
 if (!rawContext) {
-    throw new Error("Canvas context not available");
+    throw new Error("Le contexte du canvas est indisponible");
 }
 
 const context: CanvasRenderingContext2D = rawContext;
@@ -252,12 +252,12 @@ form.addEventListener("submit", (event: Event) => {
         message.textContent = "";
 
         if (game.getStatus() === GameStatus.WON) {
-            endGame("You won!", "win");
+            endGame("Bravo, tu as gagné !", "win");
             return;
         }
 
         if (game.getStatus() === GameStatus.LOST) {
-            endGame(`You lost! The word was ${game.getSecretWord()}.`, "lose");
+            endGame(`Perdu ! Le mot était ${game.getSecretWord()}.`, "lose");
         }
     } catch (error: unknown) {
         clearMessageClasses();
@@ -266,7 +266,7 @@ form.addEventListener("submit", (event: Event) => {
         if (error instanceof Error) {
             message.textContent = error.message;
         } else {
-            message.textContent = "An unexpected error occurred";
+            message.textContent = "Une erreur inattendue est survenue";
         }
     }
 });

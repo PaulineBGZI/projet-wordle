@@ -2,6 +2,7 @@ import readline from "readline";
 import { InMemoryDictionary } from "../infrastructure/dictionary/InMemoryDictionary";
 import { WordleGame } from "../domain/WordleGame";
 import { GameStatus } from "../domain/models/GameStatus";
+import { LetterFeedback } from "../domain/models/LetterFeedback";
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -11,23 +12,35 @@ const rl = readline.createInterface({
 const dictionary = new InMemoryDictionary();
 const game = new WordleGame(dictionary);
 
+function translateFeedback(feedback: LetterFeedback): string {
+    if (feedback === LetterFeedback.CORRECT) {
+        return "BIEN PLACE";
+    }
+
+    if (feedback === LetterFeedback.MISPLACED) {
+        return "MAL PLACE";
+    }
+
+    return "ABSENT";
+}
+
 function askGuess() {
-    rl.question("Enter a 5-letter word: ", (input: string) => {
+    rl.question("Entre un mot de 5 lettres : ", (input: string) => {
         try {
             const feedback = game.play(input);
 
             console.log(
-                feedback.getFeedback().map((f) => f).join(" | ")
+                feedback.getFeedback().map(translateFeedback).join(" | ")
             );
 
             if (game.getStatus() === GameStatus.WON) {
-                console.log("You won!");
+                console.log("Bravo, tu as gagné !");
                 rl.close();
                 return;
             }
 
             if (game.getStatus() === GameStatus.LOST) {
-                console.log("You lost!");
+                console.log(`Perdu ! Le mot était ${game.getSecretWord()}.`);
                 rl.close();
                 return;
             }
@@ -40,5 +53,5 @@ function askGuess() {
     });
 }
 
-console.log("Welcome to Wordle!");
+console.log("Bienvenue dans Wordle !");
 askGuess();

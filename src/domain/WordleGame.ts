@@ -4,6 +4,7 @@ import { GuessFeedback } from "./models/GuessFeedback";
 import { GameStatus } from "./models/GameStatus";
 import { Word } from "./models/Word";
 import { InvalidWordError } from "./models/InvalidWordError";
+import { GameAlreadyFinishedError } from "./models/GameAlreadyFinishedError";
 
 export class WordleGame {
     private readonly secretWord: Word;
@@ -23,7 +24,7 @@ export class WordleGame {
 
     play(guess: string): GuessFeedback {
         if (this.status !== GameStatus.IN_PROGRESS) {
-            throw new Error("Game is already finished");
+            throw new GameAlreadyFinishedError();
         }
 
         const word = new Word(guess);

@@ -1,18 +1,19 @@
 import { LetterFeedback } from "./LetterFeedback";
+import { InvalidFeedbackError } from "./InvalidFeedbackError";
 
 export class GuessFeedback {
     private readonly feedback: LetterFeedback[];
 
     constructor(feedback: LetterFeedback[]) {
         if (feedback.length !== 5) {
-            throw new Error("Feedback must contain exactly 5 letters");
+            throw new InvalidFeedbackError();
         }
 
-        this.feedback = feedback;
+        this.feedback = [...feedback];
     }
 
     getFeedback(): LetterFeedback[] {
-        return this.feedback;
+        return [...this.feedback];
     }
 
     isWin(): boolean {

@@ -1,6 +1,6 @@
 export class InvalidWordError extends Error {
     constructor(word: string) {
-        super(`"${word}" is not a valid 5-letter word`);
+        super(`"${word}" n'est pas un mot valide de 5 lettres`);
         this.name = "InvalidWordError";
     }
 }
