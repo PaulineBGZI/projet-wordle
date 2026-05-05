@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "vitest",
+    "test": "vitest --reporter verbose",
     "start": "ts-node --project tsconfig.cli.json src/cli/main.ts",
     "dev": "vite",
     "build:web": "vite build",

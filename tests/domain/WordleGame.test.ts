@@ -1,12 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { expect, it } from "vitest";
 import { WordleGame } from "../../src/domain/WordleGame";
 import { FakeDictionary } from "../doubles/FakeDictionary";
 import { GameStatus } from "../../src/domain/models/GameStatus";
 import { InvalidWordError } from "../../src/domain/models/InvalidWordError";
 import { GameAlreadyFinishedError } from "../../src/domain/models/GameAlreadyFinishedError";
 
-describe("WordleGame", () => {
-    it("should win the game when the correct word is guessed", () => {
+it("should win the game when the correct word is guessed", () => {
         // Given
         const secretWord = "LIVRE";
         const dictionary = new FakeDictionary([secretWord], secretWord);
@@ -19,9 +18,9 @@ describe("WordleGame", () => {
         expect(result.isWin()).toBe(true);
         expect(game.getStatus()).toBe(GameStatus.WON);
         expect(game.getAttempts()).toBe(1);
-    });
+});
 
-    it("should lose the game after reaching max attempts", () => {
+it("should lose the game after reaching max attempts", () => {
         // Given
         const secretWord = "LIVRE";
         const wrongGuess = "ABCDE";
@@ -36,9 +35,9 @@ describe("WordleGame", () => {
         // Then
         expect(game.getStatus()).toBe(GameStatus.LOST);
         expect(game.getAttempts()).toBe(maxAttempts);
-    });
+});
 
-    it("should throw an error if the word is not in the dictionary", () => {
+it("should throw an error if the word is not in the dictionary", () => {
         // Given
         const secretWord = "LIVRE";
         const unknownWord = "XXXXX";
@@ -49,9 +48,9 @@ describe("WordleGame", () => {
         expect(() => game.play(unknownWord)).toThrow(InvalidWordError);
         expect(game.getAttempts()).toBe(0);
         expect(game.getStatus()).toBe(GameStatus.IN_PROGRESS);
-    });
+});
 
-    it("should reject words with the wrong length", () => {
+it("should reject words with the wrong length", () => {
         // Given
         const secretWord = "LIVRE";
         const tooShortGuess = "CHAT";
@@ -61,9 +60,9 @@ describe("WordleGame", () => {
         // When / Then
         expect(() => game.play(tooShortGuess)).toThrow(InvalidWordError);
         expect(game.getAttempts()).toBe(0);
-    });
+});
 
-    it("should not allow playing after the game is finished", () => {
+it("should not allow playing after the game is finished", () => {
         // Given
         const secretWord = "LIVRE";
         const dictionary = new FakeDictionary([secretWord], secretWord);
@@ -72,5 +71,4 @@ describe("WordleGame", () => {
 
         // When / Then
         expect(() => game.play(secretWord)).toThrow(GameAlreadyFinishedError);
-    });
 });

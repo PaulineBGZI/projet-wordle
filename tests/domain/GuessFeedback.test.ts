@@ -1,10 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { expect, it } from "vitest";
 import { GuessFeedback } from "../../src/domain/models/GuessFeedback";
 import { InvalidFeedbackError } from "../../src/domain/models/InvalidFeedbackError";
 import { LetterFeedback } from "../../src/domain/models/LetterFeedback";
 
-describe("GuessFeedback", () => {
-    it("should reject feedback that does not contain exactly five letters", () => {
+it("should reject feedback that does not contain exactly five letters", () => {
         // Given
         const incompleteFeedback = [
             LetterFeedback.CORRECT,
@@ -13,9 +12,9 @@ describe("GuessFeedback", () => {
 
         // When / Then
         expect(() => new GuessFeedback(incompleteFeedback)).toThrow(InvalidFeedbackError);
-    });
+});
 
-    it("should protect its feedback from outside changes", () => {
+it("should protect its feedback from outside changes", () => {
         // Given
         const feedback = new GuessFeedback([
             LetterFeedback.CORRECT,
@@ -31,5 +30,4 @@ describe("GuessFeedback", () => {
 
         // Then
         expect(feedback.isWin()).toBe(true);
-    });
 });
